@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { ApiService } from 'src/app/services/api/api.service';
+import { Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-products',
@@ -12,9 +14,16 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 })
 export class ProductsPage implements OnInit {
 
-  constructor() { }
+  private api = inject(ApiService);
+  products: Product[] = [];
+  productsInSearch: Product[] = [];
 
   ngOnInit() {
+    this.getProducts();
   }
 
+  getProducts(){
+    this.products = this.api.items;
+    this.productsInSearch = [...this.products];
+  }
 }
