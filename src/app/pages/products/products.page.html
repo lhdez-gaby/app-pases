@@ -1,14 +1,14 @@
-<app-header title="Pases"/>
+<app-header title="Pases" />
 
-<ion-content >
+<ion-content>
   @if (showGrid){
   <ion-row class="content">
     @for(product of products; track product.id){
-      <ion-col sizeXL="3" sizeLg="3" sizeMd="4" sizeSm ="6" sizeXs="6">
-        <ion-card color="primary" class="card">
-          <ion-thumbnail>
-            <ion-img [src]="product?.image"></ion-img>
-          </ion-thumbnail>
+    <ion-col sizeXL="3" sizeLg="3" sizeMd="4" sizeSm="6" sizeXs="6">
+      <ion-card color="primary" class="card">
+        <ion-thumbnail class="product-thumbnail">
+          <ion-img [src]="product?.image"></ion-img>
+        </ion-thumbnail>
         <ion-label>
           <ion-text class="product-name">
             {{ product?.productName }}
@@ -19,17 +19,17 @@
             </ion-text>
           </p>
         </ion-label>
-        </ion-card>
-      </ion-col>
-    } 
+      </ion-card>
+    </ion-col>
+    }
   </ion-row>
-}@else{
+  }@else{
   <ion-list>
     @for(product of products; track product.id){
     <ion-item class="item" color="primary">
-        <ion-thumbnail>
-          <ion-img [src]="product?.image"></ion-img>
-        </ion-thumbnail>
+      <ion-thumbnail class="product-thumbnail">
+        <ion-img [src]="product?.image"></ion-img>
+      </ion-thumbnail>
       <ion-label>
         <ion-text class="product-name">
           {{ product?.productName }}
@@ -40,9 +40,8 @@
           </ion-text>
         </p>
       </ion-label>
-      
     </ion-item>
     }
   </ion-list>
-}
+  }
 </ion-content>
