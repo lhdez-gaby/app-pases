@@ -1,6 +1,7 @@
 <app-header title="Pases"/>
 
 <ion-content >
+  @if (showGrid){
   <ion-row class="content">
     @for(product of products; track product.id){
       <ion-col sizeXL="3" sizeLg="3" sizeMd="4" sizeSm ="6" sizeXs="6">
@@ -20,7 +21,28 @@
         </ion-label>
         </ion-card>
       </ion-col>
-    }
-    
+    } 
   </ion-row>
+}@else{
+  <ion-list>
+    @for(product of products; track product.id){
+    <ion-item class="item" color="primary">
+        <ion-thumbnail>
+          <ion-img [src]="product?.image"></ion-img>
+        </ion-thumbnail>
+      <ion-label>
+        <ion-text class="product-name">
+          {{ product?.productName }}
+        </ion-text>
+        <p>
+          <ion-text class="product-price">
+            {{ product?.price | currency:"MXN" }}
+          </ion-text>
+        </p>
+      </ion-label>
+      
+    </ion-item>
+    }
+  </ion-list>
+}
 </ion-content>
