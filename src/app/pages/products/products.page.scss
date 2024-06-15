@@ -1,8 +1,40 @@
 .card{
+
+    height: 16rem;
+    margin: 0.3rem;
+    border-radius: 3px;
+    box-shadow: none;
+    text-align: center;
+
+    ion-thumbnail{
+        width: 100%;
+        height: 12rem;
+        margin-bottom: 12px;
+    }
+
     .product-name{
+        font-size: 0.8m;
         font-weight: bold;
+        padding: 5px;
     }
     .product-price{
+        font-size: 1rem;
         color:white;
+        
+    }
+}
+
+@media (min-width: 769px) {
+    .content{
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 1rem;
+
+        .product-name{
+            font-size: 1rem;
+        }
+        .product-price{
+            font-size: 1.2rem;
+        }
     }
 }
