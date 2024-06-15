@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  showGrid: true,
+  apiUrl: 'https://mi-servidor-web.com/api',
 };

@@ -5,6 +5,8 @@ import { IonThumbnail, IonContent, IonRow ,IonCol, IonImg, IonCard, IonLabel, Io
 import { ApiService } from 'src/app/services/api/api.service';
 import { Product } from 'src/app/models/product.model';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-products',
@@ -27,27 +29,33 @@ import { SharedModule } from 'src/app/shared/shared.module';
     IonSearchbar,
     CommonModule, 
     FormsModule, 
-    SharedModule,]
+    SharedModule,
+  ]
 })
 export class ProductsPage implements OnInit {
 
-  private api = inject(ApiService);
+  private api = inject(ApiService); //api estática
   // Se agregan dos arreglos de productos, una para guardar permanentemente todos los productos y otra para que cambie en función de la búsqueda.
   products: Product[] = [];
   allProducts: Product[] = [];
-
-  showGrid: boolean = false;
   query!:string;
+  // Ejemplo de uso de variables de entorno.
+  showGrid!: boolean; // Funcionando variable para el modo en que se muestran los productos.
+  data: any; //De ejemplo para el caso de tener una api dinámica.
 
   ngOnInit() {
     this.getProducts();
+    this.showGrid = environment.showGrid;
+    this.api.getData().subscribe(response => {
+      this.data = response;
+    });
   }
 
   getProducts(){
     this.allProducts = this.api.items;
     this.products = [...this.allProducts];
   }
-  // ----------Manejo de búsque de productos----------
+  // ----------Manejo de búsqueda de productos----------
   onSearchChange(event: any){
     this.query = event.detail.value.toLowerCase().normalize('NFD');
     this.querySearch(); 

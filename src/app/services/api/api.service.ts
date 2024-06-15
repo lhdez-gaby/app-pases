@@ -1,11 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  //Ejemplo de manejo de variable de entorno con api dinámica
+  private apiUrl = environment.apiUrl;
 
+  constructor(private http: HttpClient) {}
+
+  getData() {
+    return this.http.get(`${this.apiUrl}/data`);
+  }
+  //api estática
   items: Product[] = [
     {
       id: 1,
