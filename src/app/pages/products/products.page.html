@@ -1,5 +1,18 @@
 <app-header title="Pases" />
 
+<ion-toolbar>
+  <ion-searchbar
+    debounce="800"
+    #seachInput
+    placeholder="Buscar pase..."
+    (ionInput)="onSearchChange($event)"
+  >
+    <ion-title>
+      Buscar
+    </ion-title>
+  </ion-searchbar>
+</ion-toolbar>
+
 <ion-content>
   @if (showGrid){
   <ion-row class="content">
