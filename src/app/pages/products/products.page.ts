@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonThumbnail, IonContent, IonRow ,IonCol, IonImg, IonCard, IonLabel, IonText } from '@ionic/angular/standalone';
 import { ApiService } from 'src/app/services/api/api.service';
 import { Product } from 'src/app/models/product.model';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -11,20 +11,32 @@ import { SharedModule } from 'src/app/shared/shared.module';
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, SharedModule]
+  imports: [
+    IonCol,
+    IonContent,
+    IonRow,
+    IonThumbnail,
+    IonImg, 
+    IonCard,
+    IonLabel,
+    IonText, 
+    CommonModule, 
+    FormsModule, 
+    SharedModule,]
 })
 export class ProductsPage implements OnInit {
 
   private api = inject(ApiService);
+  // Se agregan dos arreglos de productos, una para guardar permanentemente todos los productos y otra para que cambie en función de la búsqueda.
   products: Product[] = [];
-  productsInSearch: Product[] = [];
+  allProducts: Product[] = [];
 
   ngOnInit() {
     this.getProducts();
   }
 
   getProducts(){
-    this.products = this.api.items;
-    this.productsInSearch = [...this.products];
+    this.allProducts = this.api.items;
+    this.products = [...this.allProducts];
   }
 }

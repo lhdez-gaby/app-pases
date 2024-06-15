@@ -1,9 +1,26 @@
 <app-header title="Pases"/>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">products</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-row>
+    @for(product of products; track product.id){
+      <ion-col sizeXL="3" sizeLg="3" sizeMd="4" sizeSm ="6" sizeXs="6">
+        <ion-card color="primary" class="card">
+          <ion-thumbnail>
+            <ion-img [src]="product?.image"></ion-img>
+          </ion-thumbnail>
+        <ion-label>
+          <ion-text class="product-name">
+            {{ product?.productName }}
+          </ion-text>
+          <p>
+            <ion-text class="product-price">
+              {{ product?.price | currency:"MXN" }}
+            </ion-text>
+          </p>
+        </ion-label>
+        </ion-card>
+      </ion-col>
+    }
+    
+  </ion-row>
 </ion-content>

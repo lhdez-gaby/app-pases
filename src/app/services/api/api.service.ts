@@ -138,7 +138,7 @@ export class ApiService {
     {
       id: 17,
       productName: "Pase voleibol de sala",
-      image: "assets/image/voleibol-de-sala",
+      image: "assets/image/voleibol-de-sala.jpg",
       icon: "assets/icon/icon-voleibol-de-sala.png",
       price: 140,
       description: "Deporte donde dos equipos se enfrentan sobre un terreno de juego liso separados por una red central, tratando de pasar el balón por encima de la red hacia el suelo del campo contrario.",
