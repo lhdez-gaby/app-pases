@@ -19,8 +19,8 @@
     @for(product of products; track product.id){
     <ion-col sizeXL="3" sizeLg="3" sizeMd="4" sizeSm="6" sizeXs="6">
       <ion-card 
-        color="primary" 
         class="card"
+        color="primary" 
         [routerLink] = "['/','products','product', product?.id]"
       >
         <ion-thumbnail class="product-thumbnail">

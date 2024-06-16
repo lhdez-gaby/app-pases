@@ -1,30 +1,34 @@
 <ion-content [fullscreen]="true">
-  <ion-header slot="fixed">
-    <ion-toolbar>
-      <ion-buttons slot="start" mode="md">
+  <ion-header slot="fixed" class="ion-no-border detail-header">
+    <ion-toolbar class="toolbar">
+      <ion-buttons slot="start" mode="md" class="button">
         <ion-back-button defaultHref="/products" color="primary"></ion-back-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
-  <div [style.backgroundImage]="'url('+product?.image+')'">
+  <div class="product-container">
+    <div [style.backgroundImage]="'url('+product?.image+')'" class="product-image">
+    </div>
+    <ion-item lines="none">
+      <ion-label class="label">
+        <div class="title-container">
+          <span class="product-icon-container flex-center">
+            <img [src]="product?.icon" class="custom-icon"/>
+          </span>
+          <h2 class="product-title">
+            {{ product?.productName }}
+          </h2>
+        </div>
+        
+        <p class="product-description">
+          {{ product?.description }}
+        </p>
+        <ion-text class="product-price">
+          {{ product?.price | currency:"MXN" }}
+        </ion-text>
+      </ion-label>  
+    </ion-item>
   </div>
-  <ion-item>
-    <ion-label>
-      <div>
-        <img [src]="product?.icon" color="primary"/>
-      </div>
-      <h2>
-        {{ product?.productName }}
-      </h2>
-      <p>
-        {{ product?.description }}
-      </p>
-      <ion-text class="product-price">
-        {{ product?.price | currency:"MXN" }}
-      </ion-text>
-    </ion-label>
-      
-  </ion-item>
-  
 </ion-content>
+
