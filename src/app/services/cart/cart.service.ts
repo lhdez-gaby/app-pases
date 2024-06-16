@@ -101,6 +101,7 @@ export class CartService {
     
     if(!cartData){
       cartData = await this.storage.getStorage(this.cartStoreName);
+      console.log(cartData);
       if(cartData?.value){
         this.model = JSON.parse(cartData.value);
         this._cart.next(this.model)

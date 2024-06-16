@@ -23,6 +23,8 @@ export class BackButtonComponent  implements OnInit {
     const routeUrl = this.router.url; //Obtinene la url actual
     const urlParts = routeUrl.split('/');//Separa las partes de la url
     urlParts.pop();//Quita la últma parte que corresponde a la página actual
+    const newLastPart = urlParts[urlParts.length-1]
+    if(newLastPart == 'product') urlParts.pop() 
     this.previusUrl = urlParts.join('/');//Une las partes para formar la url de la página anterior
   }
 
