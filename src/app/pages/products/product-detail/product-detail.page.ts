@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, NavController, IonImg, IonItem, IonLabel, IonText, IonFooter, IonButton, IonIcon, IonBadge } from '@ionic/angular/standalone';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { Product } from 'src/app/models/product.model';
 import { Subscription } from 'rxjs';
@@ -30,7 +30,9 @@ import { Subscription } from 'rxjs';
     IonIcon,
     IonBadge,
     CommonModule, 
-    FormsModule]
+    FormsModule,
+    RouterLink,
+  ]
 })
 export class ProductDetailPage implements OnInit, OnDestroy {
 
