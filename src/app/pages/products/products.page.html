@@ -18,7 +18,11 @@
   <ion-row class="content">
     @for(product of products; track product.id){
     <ion-col sizeXL="3" sizeLg="3" sizeMd="4" sizeSm="6" sizeXs="6">
-      <ion-card color="primary" class="card">
+      <ion-card 
+        color="primary" 
+        class="card"
+        [routerLink] = "['/','products','product', product?.id]"
+      >
         <ion-thumbnail class="product-thumbnail">
           <ion-img [src]="product?.image"></ion-img>
         </ion-thumbnail>
@@ -39,7 +43,11 @@
   }@else{
   <ion-list>
     @for(product of products; track product.id){
-    <ion-item class="item" color="primary">
+    <ion-item 
+      class="item" 
+      color="primary"
+      [routerLink] = "['/','products','product', product?.id]"
+    >
       <ion-thumbnail class="product-thumbnail">
         <ion-img [src]="product?.image"></ion-img>
       </ion-thumbnail>

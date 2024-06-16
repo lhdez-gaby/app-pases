@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { Product } from 'src/app/models/product.model';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { environment } from '../../../environments/environment';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -27,6 +28,7 @@ import { environment } from '../../../environments/environment';
     IonTitle,
     IonToolbar,
     IonSearchbar,
+    RouterLink,
     CommonModule, 
     FormsModule, 
     SharedModule,
