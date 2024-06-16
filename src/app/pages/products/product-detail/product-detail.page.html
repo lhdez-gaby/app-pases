@@ -4,6 +4,21 @@
       <ion-buttons slot="start" mode="md" class="button">
         <ion-back-button defaultHref="/products" color="primary"></ion-back-button>
       </ion-buttons>
+      <ion-buttons slot="end" >
+        <!-- [routerLink]="['/','home', 'cart']"  -->
+        <ion-button 
+        color="primary" 
+        size="large" 
+        class="button cart-button">
+          <ion-icon slot="start" name="cart-outline" class="icon"></ion-icon>
+          
+        </ion-button>
+        @if(productsInCart > 0){
+          <ion-badge class="badge">
+            <ion-text class="text">{{ productsInCart }}</ion-text>
+          </ion-badge>
+        }
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
@@ -39,11 +54,11 @@
       expand="block"
       [strong]="true"
       mode="ios"
-      [color]="addToCart? 'success' : 'primary'"
+      [color]="addToCartText? 'success' : 'primary'"
       (click)="addProduct()"
     >
       <ion-icon slot="start" name="cart-outline"></ion-icon>
-      <ion-text>{{addToCart || 'Agregar al carrito' }}</ion-text>
+      <ion-text>{{addToCartText || 'Agregar al carrito' }}</ion-text>
     </ion-button>
   </ion-toolbar>
 </ion-footer>

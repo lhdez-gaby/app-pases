@@ -2,7 +2,7 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
-
+import { RouterLink } from '@angular/router';
 
 
 @NgModule({
@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     CommonModule,
     IonicModule,
+    RouterLink,
   ]
 })
 export class SharedModule { }

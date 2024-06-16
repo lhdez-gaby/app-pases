@@ -1,10 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { CartService } from './../../../services/cart/cart.service';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, NavController, IonImg, IonItem, IonLabel, IonText, IonFooter, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, NavController, IonImg, IonItem, IonLabel, IonText, IonFooter, IonButton, IonIcon, IonBadge } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { Product } from 'src/app/models/product.model';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -26,23 +28,34 @@ import { Product } from 'src/app/models/product.model';
     IonFooter,
     IonButton,
     IonIcon,
+    IonBadge,
     CommonModule, 
     FormsModule]
 })
-export class ProductDetailPage implements OnInit {
+export class ProductDetailPage implements OnInit, OnDestroy {
 
   id?: string;
-  product?: Product;
-  addToCart?: string | null;
+  product!: Product;
+  addToCartText?: string | null; 
+  productsInCart: number = 0;
+
+  cartSubscribe!: Subscription;
 
   private route = inject(ActivatedRoute);
   private navControl = inject(NavController);
   private api = inject(ApiService);
+  private cartService = inject(CartService);
 
   constructor() { }
 
   ngOnInit() {
     this.getItem();
+
+    this.cartSubscribe = this.cartService.cart.subscribe({
+      next: (cart) => {
+        this.productsInCart = cart ?  cart?.productsInCart: 0;
+      }
+    })
   }
 
   getItem(){
@@ -53,19 +66,28 @@ export class ProductDetailPage implements OnInit {
     }
 
     this.id = id;
-    this.product = this.api.items.find((item)=> item.id == id);
+    const foundProduct = this.api.items.find((item)=> item.id == id);
+    if(foundProduct){
+      this.product = foundProduct;
+    }
   }
 
   addProduct(){
+    const result = this.cartService.addQuantity(this.product)
     this.addedText();
   }
 
+  //Cambia texto para botton "agregar al carrito"
   addedText(){
-    this.addToCart = "Agregado al carrito";
+    this.addToCartText = "Agregado al carrito";
     setTimeout(()=>{
-      this.addToCart = null;
+      this.addToCartText = null;
     },1000
     );
+  }
+
+  ngOnDestroy(): void {
+    if(this.cartSubscribe) this.cartSubscribe.unsubscribe
   }
 
 }

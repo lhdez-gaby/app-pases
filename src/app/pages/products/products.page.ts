@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonThumbnail, IonContent, IonRow ,IonCol, IonImg, IonCard, IonLabel, IonText, IonList, IonItem,  IonTitle, IonToolbar,IonSearchbar } from '@ionic/angular/standalone';
@@ -7,6 +7,8 @@ import { Product } from 'src/app/models/product.model';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { environment } from '../../../environments/environment';
 import { RouterLink } from '@angular/router';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -34,9 +36,7 @@ import { RouterLink } from '@angular/router';
     SharedModule,
   ]
 })
-export class ProductsPage implements OnInit {
-
-  private api = inject(ApiService); //api estática
+export class ProductsPage implements OnInit, OnDestroy{
   // Se agregan dos arreglos de productos, una para guardar permanentemente todos los productos y otra para que cambie en función de la búsqueda.
   products: Product[] = [];
   allProducts: Product[] = [];
@@ -45,12 +45,27 @@ export class ProductsPage implements OnInit {
   showGrid!: boolean; // Funcionando variable para el modo en que se muestran los productos.
   data: any; //De ejemplo para el caso de tener una api dinámica.
 
+  productsInCart: number = 1;
+
+  cartSubscribe!: Subscription;
+  private api = inject(ApiService); //api estática
+  private cartService = inject(CartService);
+
+
+  
+
   ngOnInit() {
     this.getProducts();
     this.showGrid = environment.showGrid;
     this.api.getData().subscribe(response => {
       this.data = response;
     });
+
+    this.cartSubscribe = this.cartService.cart.subscribe({
+      next: (cart) => {
+        this.productsInCart = cart ?  cart?.productsInCart : 0;
+      }
+    })
   }
 
   getProducts(){
@@ -76,5 +91,9 @@ export class ProductsPage implements OnInit {
     this.products = this.api.items.filter((product) =>
       product.productName.toLowerCase().normalize('NFD').includes(this.query)
     );
+  }
+
+  ngOnDestroy(): void {
+    if(this.cartSubscribe) this.cartSubscribe.unsubscribe
   }
 }

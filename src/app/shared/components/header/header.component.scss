@@ -1,6 +1,15 @@
 .header-logo {
     margin:1em; /* Ajusta el tamaño según sea necesario */
-  }
-.icon{
-  font-size: 2rem;
+}
+
+.button{
+    background: #FFFFFF;
+    border-radius: 50%;
+}
+.cart-button{
+    width: 42px;
+    height: 42px;
+    .icon{
+        margin: 0 auto;
+    }
 }
