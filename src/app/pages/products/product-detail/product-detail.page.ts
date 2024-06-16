@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, NavController } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, NavController, IonImg, IonItem, IonLabel, IonText } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { Product } from 'src/app/models/product.model';
@@ -19,6 +19,10 @@ import { Product } from 'src/app/models/product.model';
     IonToolbar, 
     IonButtons,
     IonBackButton,
+    IonImg,
+    IonItem,
+    IonLabel,
+    IonText,
     CommonModule, 
     FormsModule]
 })

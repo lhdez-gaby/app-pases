@@ -6,4 +6,25 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
+
+  <div [style.backgroundImage]="'url('+product?.image+')'">
+  </div>
+  <ion-item>
+    <ion-label>
+      <div>
+        <img [src]="product?.icon" color="primary"/>
+      </div>
+      <h2>
+        {{ product?.productName }}
+      </h2>
+      <p>
+        {{ product?.description }}
+      </p>
+      <ion-text class="product-price">
+        {{ product?.price | currency:"MXN" }}
+      </ion-text>
+    </ion-label>
+      
+  </ion-item>
+  
 </ion-content>
