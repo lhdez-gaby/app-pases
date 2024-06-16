@@ -29,9 +29,7 @@ export const routes: Routes = [
             loadComponent: () => import('./pages/products/cart/cart.page').then( m => m.CartPage)
           },
         ],
-        
       },
     ],
-    
   },
 ];

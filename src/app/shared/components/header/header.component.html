@@ -1,24 +1,28 @@
 <ion-header >
   <ion-toolbar color="secondary">
-          <ion-title>
+    @if(hasBackButton){
+      <app-back-button slot="start"></app-back-button>
+    }
+      <ion-title>
         {{ title }}
       </ion-title>
       <div slot="secondary" class="header-logo">
         c l u b
       </div>
-      <ion-buttons slot="end" [routerLink]="['/','products', 'cart']">
-        <ion-button 
-          color="primary" 
-          size="large"
-          class="button cart-button">
-          <ion-icon slot="start" name="cart-outline" class="icon"></ion-icon>
-          
-        </ion-button>
-        @if(productsInCart > 0){
-          <ion-badge class="badge">
-            <ion-text class="text">{{ productsInCart }}</ion-text>
-          </ion-badge>
-        }
-      </ion-buttons>
+      @if(hasCartButton){
+        <ion-buttons slot="end" [routerLink]="['/','products', 'cart']">
+          <ion-button 
+            color="primary" 
+            size="large"
+            class="button cart-button">
+            <ion-icon slot="start" name="cart-outline" class="icon"></ion-icon>
+          </ion-button>
+          @if(productsInCart > 0){
+            <ion-badge class="badge">
+              <ion-text class="text">{{ productsInCart }}</ion-text>
+            </ion-badge>
+          }
+        </ion-buttons>
+      }
   </ion-toolbar>
 </ion-header>

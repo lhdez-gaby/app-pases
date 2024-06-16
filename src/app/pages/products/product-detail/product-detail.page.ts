@@ -7,6 +7,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { Product } from 'src/app/models/product.model';
 import { Subscription } from 'rxjs';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @Component({
@@ -31,6 +32,7 @@ import { Subscription } from 'rxjs';
     IonBadge,
     CommonModule, 
     FormsModule,
+    SharedModule,
     RouterLink,
   ]
 })

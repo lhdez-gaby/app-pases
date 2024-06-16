@@ -1,10 +1,8 @@
 <ion-content [fullscreen]="true">
   <ion-header slot="fixed" class="ion-no-border detail-header">
     <ion-toolbar class="toolbar">
-      <ion-buttons slot="start" mode="md" class="button">
-        <ion-back-button defaultHref="/products" color="primary"></ion-back-button>
-      </ion-buttons>
-      <ion-buttons slot="end" [routerLink]="['/','products', 'cart']" >
+      <app-back-button/>
+      <ion-buttons slot="end" [routerLink]="['/','products','product',product?.id,'cart']" >
         <ion-button 
         color="primary" 
         size="large" 
