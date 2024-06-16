@@ -17,7 +17,7 @@
   @if (showGrid){
   <ion-row class="content">
     @for(product of products; track product.id){
-    <ion-col sizeXL="3" sizeLg="3" sizeMd="4" sizeSm="6" sizeXs="6">
+    <ion-col sizeXL="3" sizeLg="3" sizeMd="4" sizeSm="6" sizeXs="6" class="card-container">
       <ion-card 
         class="card"
         color="primary" 
@@ -31,7 +31,7 @@
             {{ product?.productName }}
           </ion-text>
           <p>
-            <ion-text class="product-price">
+            <ion-text color="light" class="product-price" >
               {{ product?.price | currency:"MXN" }}
             </ion-text>
           </p>
@@ -45,9 +45,9 @@
     @for(product of products; track product.id){
     <ion-item 
       class="item" 
-      color="primary"
       [routerLink] = "['/','products','product', product?.id]"
     >
+    <div class="item-container">
       <ion-thumbnail class="product-thumbnail">
         <ion-img [src]="product?.image"></ion-img>
       </ion-thumbnail>
@@ -56,11 +56,13 @@
           {{ product?.productName }}
         </ion-text>
         <p>
-          <ion-text class="product-price">
+          <ion-text color="light" class="product-price">
             {{ product?.price | currency:"MXN" }}
           </ion-text>
         </p>
       </ion-label>
+    </div>
+      
     </ion-item>
     }
   </ion-list>

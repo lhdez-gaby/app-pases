@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  showGrid: false,
+  showGrid: true,
   apiUrl: 'http://localhost:8100/api'
 };
 
