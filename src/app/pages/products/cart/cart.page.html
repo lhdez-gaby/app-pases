@@ -9,7 +9,7 @@
     </ion-button>
   </ion-item>
 
-    @for(product of model?.products; track product.id){
+    @for(product of model?.products; track $index){
      <ion-card class="card" color="primary">
       <ion-item class="item">
         <ion-thumbnail class="product-thumbnail">

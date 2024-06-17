@@ -57,7 +57,7 @@ export class CartPage implements OnInit, OnDestroy {
     this.cartService.addQuantity(product);
   }
   substractQuantity(product: Product){
-    this.substractQuantity(product);
+    this.cartService.substractQuantity(product);
   }
 
   ngOnDestroy(){

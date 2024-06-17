@@ -1,3 +1,4 @@
+import { ProductsPage } from './../../pages/products/products.page';
 import { Product } from 'src/app/models/product.model';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -27,14 +28,17 @@ export class CartService {
   //Quita productos al carrito
   substractQuantity(product: any){
     if(this.model){
-      const index = this.model.products.findIndex((data: any) => data.id == product.id)
-
-      if(index >= 0){
-        if(this.model.products[index]?.quantity > 0){
-          this.model.products[index].quantity -= 1;
+      const indexToRemove = this.model.products.findIndex((data: any) => data.id == product.id)
+      console.log(indexToRemove)
+      if(indexToRemove >= 0){
+        if(this.model.products[indexToRemove]?.quantity > 0){
+          const allProducts = this.model.products
+          const products = allProducts.filter((_:any,index:number) => index !== indexToRemove);
+          this.model.products = products;
         }
-        return this.calculatePrice();
+        console.log(this.model)
       }
+      return this.calculatePrice();
     }
   }
   //Agrega productos al carrito
@@ -55,7 +59,7 @@ export class CartService {
     
     const products = this.model.products.filter((product: any) => product.quantity > 0);
     //Verifica si el carro esta vacío
-    if (products.length === 0){
+    if (products.length <= 0){
       this.clearCart();
       return
     }
