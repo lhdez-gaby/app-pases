@@ -1,79 +1,86 @@
 <app-header title="Carrito" [hasBackButton]=true />
 
 <ion-content>
+ 
   @if(model){
-  <ion-item lines="none" class="total-item">
-    <ion-label>{{model?.productsInCart}} pases en el carrito</ion-label>
-    <ion-button fill="clear" slot="end" color="dark" size="small" (click)="cartService.clearCart()">
-      <ion-icon name="trash-outline"></ion-icon>
-    </ion-button>
-  </ion-item>
+    <div class="container">
+      <div>
+        <ion-item lines="none" class="total-item">
+          <ion-label>{{model?.productsInCart}} pases en el carrito</ion-label>
+          <ion-button fill="clear" slot="end" color="dark" size="small" (click)="cartService.clearCart()">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+    
+        @for(product of model?.products; track $index){
+         <ion-card class="card" color="primary">
+          <ion-item class="item">
+            <ion-thumbnail class="product-thumbnail">
+              <ion-img [src]="product?.image" class="product-image"></ion-img>
+            </ion-thumbnail>
+            <ion-label class="label">
+              <ion-text color="primary">
+                {{ product?.productName }}
+              </ion-text>
+              <p>
+                <ion-text color="dark">
+                  {{ product?.price | currency:"MXN" }}
+                </ion-text>
+              </p>
+            </ion-label>
+            <ion-col slot="end" size="2">
+              <ion-row>
+                <ion-button fill="clear" (click)="addQuantity(product)">
+                  <ion-icon name="add-circle-outline"></ion-icon>
+                </ion-button>
+              </ion-row>
+              <ion-row>
+                <ion-button fill="clear" color="danger" (click)="substractQuantity(product)">
+                  <ion-icon name="remove-circle-outline"></ion-icon>
+                </ion-button>
+              </ion-row>
+            </ion-col>
+          </ion-item>
+         
+         </ion-card>
+        }
+      </div>
+      
+      <!-- resumen del pedido -->
+       <ion-list lines="none">
+          <ion-list-header>
+            <ion-label color="primary" class="resume-header">Resumen del pedido</ion-label>
+          </ion-list-header>
+          <ion-item-group class="group">
+            <ion-item>
+              <ion-label>
+                Subtotal
+              </ion-label>
+              <ion-text slot="end" color="medium">
+                {{cartService.currency}}{{model?.totalProducts | number: '0.2-2'}}
+              </ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                IVA 
+              </ion-label>
+              <ion-text slot="end" color="medium">
+                {{cartService.currency}}{{model?.totalIva | number: '0.2-2'}}
+              </ion-text>
+            </ion-item>
+            <ion-item class="total-price">
+              <ion-label class="text">
+                Total
+              </ion-label>
+              <ion-text slot="end" color="secondary" class="text">
+                {{cartService.currency}}{{model?.totalPrice | number: '0.2-2'}}
+              </ion-text>
+            </ion-item>
+          </ion-item-group>
+          
+       </ion-list>
+    </div>
 
-    @for(product of model?.products; track $index){
-     <ion-card class="card" color="primary">
-      <ion-item class="item">
-        <ion-thumbnail class="product-thumbnail">
-          <ion-img [src]="product?.image" class="product-image"></ion-img>
-        </ion-thumbnail>
-        <ion-label class="label">
-          <ion-text color="primary">
-            {{ product?.productName }}
-          </ion-text>
-          <p>
-            <ion-text color="dark">
-              {{ product?.price | currency:"MXN" }}
-            </ion-text>
-          </p>
-        </ion-label>
-        <ion-col slot="end" size="2">
-          <ion-row>
-            <ion-button fill="clear" (click)="addQuantity(product)">
-              <ion-icon name="add-circle-outline"></ion-icon>
-            </ion-button>
-          </ion-row>
-          <ion-row>
-            <ion-button fill="clear" color="danger" (click)="substractQuantity(product)">
-              <ion-icon name="remove-circle-outline"></ion-icon>
-            </ion-button>
-          </ion-row>
-        </ion-col>
-      </ion-item>
-     
-     </ion-card>
-    }
-    <!-- resumen del pedido -->
-     <ion-list lines="none">
-        <ion-list-header>
-          <ion-label color="primary" class="resume-header">Resumen del pedido</ion-label>
-        </ion-list-header>
-        <ion-item-group class="group">
-          <ion-item>
-            <ion-label>
-              Subtotal
-            </ion-label>
-            <ion-text slot="end" color="medium">
-              {{cartService.currency}}{{model?.totalProducts | number: '0.2-2'}}
-            </ion-text>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              IVA 
-            </ion-label>
-            <ion-text slot="end" color="medium">
-              {{cartService.currency}}{{model?.totalIva | number: '0.2-2'}}
-            </ion-text>
-          </ion-item>
-          <ion-item class="total-price">
-            <ion-label class="text">
-              Total
-            </ion-label>
-            <ion-text slot="end" color="secondary" class="text">
-              {{cartService.currency}}{{model?.totalPrice | number: '0.2-2'}}
-            </ion-text>
-          </ion-item>
-        </ion-item-group>
-        
-     </ion-list>
   } @else {
   <ion-label class="flex-center empty">
     <ion-icon name="cart-outline" color="primary" class="icon"></ion-icon>
