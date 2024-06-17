@@ -58,6 +58,9 @@ export class ProductDetailPage implements OnInit, OnDestroy {
     this.cartSubscribe = this.cartService.cart.subscribe({
       next: (cart) => {
         this.productsInCart = cart ?  cart?.productsInCart: 0;
+      },
+      error: (e) =>{
+        console.log(e)
       }
     })
   }
