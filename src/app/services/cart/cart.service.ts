@@ -1,7 +1,7 @@
 import { Product } from 'src/app/models/product.model';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Strings } from 'src/app/enum/strings.enum';
+import { Strings } from 'src/app/enum/strings';
 import { StorageService } from '../storage/storage.service';
 
 @Injectable({
