@@ -8,7 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { environment } from '../../../environments/environment';
 import { RouterLink } from '@angular/router';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { Subscription } from 'rxjs';
+import { Subscription, catchError, of } from 'rxjs';
 
 
 @Component({
@@ -55,9 +55,18 @@ export class ProductsPage implements OnInit, OnDestroy{
   
 
   ngOnInit() {
-    this.getProducts();
+    
     this.showGrid = environment.showGrid;
-    this.api.getData().subscribe(response => {
+    // this.api.getData().subscribe(response => {
+    //   this.data = response;
+    // });
+    this.api.getData().pipe(
+      catchError(error => {
+        console.error('Error al obtener los datos:', error);
+        this.getProducts();
+        return of([]);
+      })
+    ).subscribe(response => {
       this.data = response;
     });
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { catchError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,18 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getData() {
-    return this.http.get(`${this.apiUrl}/data`);
+    return this.http.get(`${this.apiUrl}/data`).pipe(
+      catchError((error) =>{
+        console.error('Error al obtener datos: ', error);
+        throw new Error(error);
+      })
+    );
+    // return this.http.get(`${this.apiUrl}/data`).pipe(
+    //   catchError(error => {
+    //     console.error('Error al obtener datos', error);
+    //     return throwError(error);
+    //   })
+    // );
   }
   //api estática
   items: Product[] = [
