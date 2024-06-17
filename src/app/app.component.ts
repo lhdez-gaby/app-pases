@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { cartOutline } from 'ionicons/icons';
+import { addCircleOutline, cartOutline, removeCircleOutline, trashOutline } from 'ionicons/icons';
 
 
 @Component({
@@ -17,6 +17,9 @@ export class AppComponent {
   constructor() {
     addIcons({
       cartOutline,
+      trashOutline,
+      addCircleOutline,
+      removeCircleOutline,
     });
   }
 }
