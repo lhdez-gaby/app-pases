@@ -48,23 +48,24 @@ export class CartService {
         products: [{...product, quantity: 1}]
       }
     }
-    this.calculatePrice(); 
+    console.log(this.model)
+    return this.calculatePrice(); 
   }  
   calculatePrice(){
-    const products = this.model.items.filter((product: any) => product.quantity > 0);
     
+    const products = this.model.products.filter((product: any) => product.quantity > 0);
     //Verifica si el carro esta vacío
-    if (products?.length === 0){
+    if (products.length === 0){
       this.clearCart();
       return
     }
 
-    let totalProduct: number = 0;
+    let productsInCart: number = 0;
     let totalProducts: number = 0; 
     let totalIva: number = 0;
     
     for(const product of products){
-      totalProduct += product.quantity;
+      productsInCart += product.quantity;
       totalProducts += product.price;
     }
 
@@ -73,7 +74,7 @@ export class CartService {
 
     this.model = {
       ...this.model,
-      totalProduct,
+      productsInCart,
       totalProducts,
       totalIva,
       totalPrice,
