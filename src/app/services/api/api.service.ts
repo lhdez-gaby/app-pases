@@ -20,12 +20,6 @@ export class ApiService {
         throw new Error(error);
       })
     );
-    // return this.http.get(`${this.apiUrl}/data`).pipe(
-    //   catchError(error => {
-    //     console.error('Error al obtener datos', error);
-    //     return throwError(error);
-    //   })
-    // );
   }
   //api estática
   items: Product[] = [

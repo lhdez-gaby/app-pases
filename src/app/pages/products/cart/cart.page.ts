@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -40,6 +41,7 @@ export class CartPage implements OnInit, OnDestroy {
   cartSubscribe!: Subscription;
   model: any = null;
 
+  private router = inject(Router);
   cartService = inject(CartService);
   constructor() { }
 
@@ -59,6 +61,10 @@ export class CartPage implements OnInit, OnDestroy {
   }
   substractQuantity(product: Product){
     this.cartService.substractQuantity(product);
+  }
+
+  navigateToCheckout(){
+    this.router.navigate([this.router.url,'checkout']);
   }
 
   ngOnDestroy(){

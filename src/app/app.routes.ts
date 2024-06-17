@@ -15,7 +15,17 @@ export const routes: Routes = [
       },
       {
         path: 'cart',
-        loadComponent: () => import('./pages/products/cart/cart.page').then( m => m.CartPage)
+        children:[
+          {
+            path: '',
+            loadComponent: () => import('./pages/products/cart/cart.page').then( m => m.CartPage)
+          },
+          {
+            path: 'checkout',
+            loadComponent: () => import('./pages/products/cart/checkout/checkout.page').then( m => m.CheckoutPage)
+          },
+        ]
+        
       },
       {
         path: 'product/:id',
@@ -26,10 +36,20 @@ export const routes: Routes = [
           },
           {
             path: 'cart',
-            loadComponent: () => import('./pages/products/cart/cart.page').then( m => m.CartPage)
+            children:[
+              {
+                path: '',
+                loadComponent: () => import('./pages/products/cart/cart.page').then( m => m.CartPage)
+              },
+              {
+                path: 'checkout',
+                loadComponent: () => import('./pages/products/cart/checkout/checkout.page').then( m => m.CheckoutPage)
+              },
+            ]
           },
         ],
       },
     ],
   },
+  
 ];
