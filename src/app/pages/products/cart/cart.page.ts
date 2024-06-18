@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -64,7 +64,16 @@ export class CartPage implements OnInit, OnDestroy {
   }
 
   navigateToCheckout(){
-    this.router.navigate([this.router.url,'checkout']);
+    let data: any = {
+      products: this.model?.products,
+      totalPrice: this.model?.totalPrice,
+    };
+    const navData: NavigationExtras = {
+      queryParams: {
+        data: JSON.stringify(data),
+      }
+    };
+    this.router.navigate([this.router.url,'checkout'],navData);
   }
 
   ngOnDestroy(){
