@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { Product } from 'src/app/models/product.model';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -43,6 +44,7 @@ export class CartPage implements OnInit, OnDestroy {
 
   private router = inject(Router);
   cartService = inject(CartService);
+  orderService = inject(OrderService);
   constructor() { }
 
   ngOnInit() {

@@ -1,5 +1,3 @@
-import { ProductsPage } from './../../pages/products/products.page';
-import { Product } from 'src/app/models/product.model';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Strings } from 'src/app/enum/strings';
