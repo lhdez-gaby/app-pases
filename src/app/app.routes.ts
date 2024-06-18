@@ -51,5 +51,9 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'mypasses',
+    loadComponent: () => import('./pages/mypasses/mypasses.page').then( m => m.MypassesPage)
+  },
   
 ];
