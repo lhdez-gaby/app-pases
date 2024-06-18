@@ -6,6 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { RouterLink } from '@angular/router';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { CustomInputComponent } from './components/custom-input/custom-input.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,6 +24,8 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
     CommonModule,
     IonicModule,
     RouterLink,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class SharedModule { }

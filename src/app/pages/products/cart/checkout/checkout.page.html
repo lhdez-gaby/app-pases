@@ -1,6 +1,115 @@
-<app-header title="Pago" [hasBackButton]=true />
+<app-header title="Pago con tarjeta" [hasBackButton]=true />
 
 <ion-content>
-  Pago
-  <app-custom-input></app-custom-input>
+  <div class="flex-center container">
+    <ion-icon name="card-outline" color="primary" class="icon"></ion-icon>
+  <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()" (keypresed.enter)="onSubmit()">
+     <app-custom-input
+      [control]="form.controls.cardHolderName"
+      type="text"
+      label="Nombre del titular*"
+    ></app-custom-input>
+    @if(form.controls.cardHolderName.errors && form.controls.cardHolderName.touched){
+      <div class="validator">
+        @if(form.controls.cardHolderName.hasError('required')){
+          <div>"El nombre es requerido"</div>
+        }
+        @if(form.controls.cardHolderName.hasError('minlength')){
+          <div>"Debe tener al menos 3 letras"</div>
+        }
+      </div>
+    }
+    
+    <app-custom-input
+      [control]="form.controls.cardNumber"
+      type="number"
+      label="Número de tarjeta*"
+    ></app-custom-input>
+    <ion-label>
+
+      @if(form.controls.cardNumber.errors && form.controls.cardNumber.touched){
+        <div class="validator">
+          @if(form.controls.cardNumber.hasError('required')){
+            <div>"El número de tarjeta requerido"</div>
+          }
+          @if(form.controls.cardNumber.hasError('minlength') ||form.controls.cardNumber.hasError('maxlength') ){
+            <div>"Debe tener 16 dígitos"</div>
+          }
+        </div>
+      } 
+      <ion-text>
+        Fecha de expiración:
+      </ion-text>
+    </ion-label>
+    <ion-row>
+      <ion-col>
+        <app-custom-input
+        [control]="form.controls.expirationMonth"
+        type="number"
+        label="Mes*"
+      ></app-custom-input>
+      @if(form.controls.expirationMonth.errors && form.controls.expirationMonth.touched){
+        <div class="validator">
+          @if(form.controls.expirationMonth.hasError('required')){
+            <div>"El mes es requerido"</div>
+          }
+          @if(form.controls.expirationMonth.hasError('min') ||form.controls.expirationMonth.hasError('max') ){
+            <div>"Debe ser un número entre el 1 y el 12"</div>
+          }
+        </div>
+      } 
+      </ion-col>
+      
+      <ion-col>
+        <app-custom-input
+        [control]="form.controls.expirationYear"
+        type="number"
+        label="Año*"
+      ></app-custom-input>
+      @if(form.controls.expirationYear.errors && form.controls.expirationYear.touched){
+        <div class="validator">
+          @if(form.controls.expirationYear.hasError('required')){
+            <div>"El año es requerido"</div>
+          }
+          @if(form.controls.expirationYear.hasError('min') ||form.controls.expirationYear.hasError('minlength') ){
+            <div>"Debe ser igual o mayor a 2024"</div>
+          }
+        </div>
+      } 
+      </ion-col>
+    </ion-row>
+    
+    
+    <app-custom-input
+      [control]="form.controls.ccv"
+      type="number"
+      label="CCV*"
+    ></app-custom-input>
+    @if(form.controls.ccv.errors && form.controls.ccv.touched){
+      <div class="validator">
+        @if(form.controls.ccv.hasError('required')){
+          <div>"El CCV es requerido"</div>
+        }
+        @if(form.controls.ccv.hasError('maxlength') ||form.controls.ccv.hasError('minlength') ){
+          <div>"Debe tener 3 dígitos"</div>
+        }
+      </div>
+    } 
+
+    <ion-button 
+      size="large"
+      expand="block"
+      [strong]="true"
+      mode="ios"
+      type="submit"
+      [disabled]="form.invalid"
+      >
+      <ion-text>Realizar pago</ion-text>
+    </ion-button>
+  </form>
+  
+  </div>
+  
+  
+  
 </ion-content>
