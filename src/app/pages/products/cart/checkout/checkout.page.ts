@@ -1,9 +1,11 @@
+import { OrderService } from 'src/app/services/order/order.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonInput, IonCol, IonRow, IonLabel, IonText, IonButton, NavController, IonToast } from '@ionic/angular/standalone';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { colorFill } from 'ionicons/icons';
 
 @Component({
@@ -45,7 +47,10 @@ export class CheckoutPage implements OnInit {
   toastModal?: any;
 
   private route = inject(ActivatedRoute);
-  private navCtrl = inject(NavController)
+  private router = inject(Router);
+  private navCtrl = inject(NavController);
+  private cartService = inject(CartService);
+  private orderService = inject(OrderService);
 
   constructor() { }
 
@@ -62,17 +67,18 @@ export class CheckoutPage implements OnInit {
   }
 
   onSubmit(){
-    try {
-       
-    } catch (error) {
-      console.log(error);
-      this.isToastMessage = true;
-      this.toastModal = {
-        message: 'Ocurrió un error, intenta nuevamente por favor.',
-        color: 'danger'
-      }
-    }
     console.log(this.form.value);
+    this.orderService.placeOrder(this.order);
+    this.cartService.clearCart();
+    this.isToastMessage = true;
+    this.toastModal = {
+      message: 'Pago aceptado',
+      color: 'success'
+    }
+    
+    setTimeout(()=>{
+      this.router.navigateByUrl('/products',{replaceUrl:true});
+    }, 2000);
   }
 
 }

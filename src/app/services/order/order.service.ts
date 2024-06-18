@@ -27,20 +27,22 @@ export class OrderService {
           status: true,
         }
 
-      this.order.push(orderData)
+      this.order.push(orderData);
+      console.log(this.order);
     }
     
   }
 
-  getId():string{
+  private getId():string{
     let id: number = 1;
     if(this.order){
       id = this.order.length + 1;
     }
-    const orderId = id.toString;
+    const orderId = id.toString();
     let stringId!: string; 
-    if (typeof(orderId) === "string"){
-      return orderId;
+    if (typeof(orderId) == "string"){
+      stringId = orderId;
+      return stringId;
     }
     return "typeError"
   }
