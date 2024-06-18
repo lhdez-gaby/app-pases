@@ -104,7 +104,7 @@
       type="submit"
       [disabled]="form.invalid"
       >
-      <ion-text>Realizar pago</ion-text>
+      <ion-text>Pagar {{order.totalPrice | currency:"MXN"}}</ion-text>
     </ion-button>
   </form>
   

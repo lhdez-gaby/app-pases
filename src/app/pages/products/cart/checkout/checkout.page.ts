@@ -62,8 +62,7 @@ export class CheckoutPage implements OnInit {
         this.navCtrl.back();
       }
       this.order = order;
-      console.log(this.order);
-    }
+     }
   }
 
   onSubmit(){
@@ -72,7 +71,7 @@ export class CheckoutPage implements OnInit {
     this.cartService.clearCart();
     this.isToastMessage = true;
     this.toastModal = {
-      message: 'Pago aceptado',
+      message: 'Pago exitoso',
       color: 'success'
     }
     
