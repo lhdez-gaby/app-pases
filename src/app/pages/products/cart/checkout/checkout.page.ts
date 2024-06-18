@@ -1,9 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonInput, IonCol, IonRow, IonLabel, IonText, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonInput, IonCol, IonRow, IonLabel, IonText, IonButton, NavController, IonToast } from '@ionic/angular/standalone';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ActivatedRoute } from '@angular/router';
+import { colorFill } from 'ionicons/icons';
 
 @Component({
   selector: 'app-checkout',
@@ -22,6 +23,7 @@ import { ActivatedRoute } from '@angular/router';
     IonLabel,
     IonText,
     IonButton,
+    IonToast,
     SharedModule,
     CommonModule, 
     FormsModule,
@@ -39,15 +41,37 @@ export class CheckoutPage implements OnInit {
   })
 
   order!: any;
+  isToastMessage: boolean = false;
+  toastModal?: any;
 
   private route = inject(ActivatedRoute);
+  private navCtrl = inject(NavController)
 
   constructor() { }
 
   ngOnInit() {
+    const data = this.route.snapshot.queryParams;
+    if(data['data']){
+      const order = JSON.parse(data['data']);
+      if(!order){
+        this.navCtrl.back();
+      }
+      this.order = order;
+      console.log(this.order);
+    }
   }
 
   onSubmit(){
+    try {
+       
+    } catch (error) {
+      console.log(error);
+      this.isToastMessage = true;
+      this.toastModal = {
+        message: 'Ocurrió un error, intenta nuevamente por favor.',
+        color: 'danger'
+      }
+    }
     console.log(this.form.value);
   }
 

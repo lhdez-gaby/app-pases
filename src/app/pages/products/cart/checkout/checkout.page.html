@@ -110,6 +110,15 @@
   
   </div>
   
-  
+  <ion-toast
+    [isOpen]="isToastMessage"
+    [message]="toastModal?.message"
+    [color]="toastModal?.color"
+    [duration]="4000"
+    [animated]="true"
+    position="bottom"
+    (disDismiss)="isToastMessage = false" 
+  >
+  </ion-toast>
   
 </ion-content>
