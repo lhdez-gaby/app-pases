@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonApp, IonRouterOutlet, IonMenu, IonHeader, IonToolbar, IonIcon, IonContent, IonLabel, IonItem, IonMenuToggle } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { addCircleOutline, cardOutline, cartOutline, personCircleOutline, removeCircleOutline, storefrontOutline, storefrontSharp, ticketOutline, ticketSharp, trashOutline } from 'ionicons/icons';
@@ -35,11 +36,13 @@ export class AppComponent {
     },
     {
       title: 'Mis pases',
-      url: '/myPasses',
+      url: '/mypasses',
       icon: 'ticket',
       active: false,
     },
-  ]
+  ];
+
+  private router = inject(Router)
 
   constructor() {
     addIcons({
@@ -62,5 +65,7 @@ export class AppComponent {
       this.pages[index].active = false; //desactiva la página que esta activa
       page.active = true; //activa la página tocada
     }
+
+    this.router.navigateByUrl(page?.url);
   }
 }
