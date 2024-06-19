@@ -77,7 +77,7 @@ export class CheckoutPage implements OnInit {
     
     setTimeout(()=>{
       this.router.navigateByUrl('/products',{replaceUrl:true});
-    }, 2000);
+    }, 1000);
   }
 
 }

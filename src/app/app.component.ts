@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { IonApp, IonRouterOutlet, IonMenu, IonHeader, IonToolbar, IonIcon, IonContent, IonLabel, IonItem, IonMenuToggle } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { addCircleOutline, cardOutline, cartOutline, personCircleOutline, removeCircleOutline, storefrontOutline, storefrontSharp, ticketOutline, ticketSharp, trashOutline } from 'ionicons/icons';
+import { addCircleOutline, cardOutline, cartOutline, checkmarkCircle, personCircleOutline, qrCodeOutline, removeCircleOutline, storefrontOutline, storefrontSharp, ticketOutline, ticketSharp, trashOutline } from 'ionicons/icons';
 
 
 @Component({
@@ -56,6 +56,8 @@ export class AppComponent implements OnInit{
       storefrontSharp,
       ticketOutline,
       ticketSharp,
+      qrCodeOutline,
+      checkmarkCircle,
     });
   }
 

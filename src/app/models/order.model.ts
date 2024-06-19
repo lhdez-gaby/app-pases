@@ -1,5 +1,5 @@
 export interface Order{
     id: string,
-    products: any[],
+    product: any,
     status: boolean,
 }

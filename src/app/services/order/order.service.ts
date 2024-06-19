@@ -13,7 +13,9 @@ export class OrderService {
   }
 
   placeOrder(data: any){
+    
     for (const product of data.products){
+      
       const id:string = this.getId();
       if (id === "typeError"){
         console.error("Error al obtener el id de la orden")
@@ -23,13 +25,13 @@ export class OrderService {
       const orderData: Order= 
         {
           id: id,
-          products: product,
+          product: product,
           status: true,
         }
 
-      this.order.push(orderData);
-      console.log(this.order);
+      this.order.push(orderData); 
     }
+    console.log(this.order);
     
   }
 

@@ -1,9 +1,67 @@
 <app-header title="Mis pases" [hasMenuButton]=true />
 
-<ion-content>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">mypasses</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content color="primary">
+  @if (orders.length>0){
+    <div class="container">
+    @for(order of orders; track order.id){
+      <ion-card class="card" color="primary">
+          <ion-item>
+            <div class="item-container">
+              
+              <ion-thumbnail>
+                <ion-img [src]="order?.product?.image"></ion-img>
+              </ion-thumbnail>
+              <div class="line"></div>
+              <ion-label class="label">
+                <div class = "orderName">
+                  {{ order?.product?.productName }}
+                </div>
+                <div class="numPase">
+                  <ion-text color="medium">
+                    Número de Pase:
+                  </ion-text>
+                  <ion-text color="dark">
+                    {{ order?.id}}
+                  </ion-text>
+                </div>
+                <p>
+                  <span>
+                    <ion-icon name="checkmark-circle" color="success" size="md"></ion-icon>
+                  </span>
+                  @if(order?.status == true){
+                    <ion-text color="dark">
+                      Puedes usar este pase
+                    </ion-text>
+                  }
+                  
+                </p>
+              </ion-label>
+              <div class="line"></div>
+              <ion-col slot="end" size="3" class="qr-section">
+                <ion-row>
+                  <ion-icon name="qr-code-outline" color="primary" size="large"></ion-icon>
+                </ion-row>
+                <ion-row>
+                  <ion-button size="small">
+                    Descargar qr
+                  </ion-button>
+                </ion-row>
+              </ion-col>
+            </div>
+            
+          </ion-item>
+         
+        
+        
+       </ion-card>
+    }
+  </div>
+  }@else{
+    <ion-label class="flex-center empty">
+      <ion-icon name="ticket-outline" class="icon"></ion-icon>
+      <ion-text>No tienes pases sin usar.</ion-text>
+      <ion-text>Puedes comprar pases en la tienda.</ion-text>
+    </ion-label>
+  }
+  
 </ion-content>

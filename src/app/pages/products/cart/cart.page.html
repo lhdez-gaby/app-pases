@@ -6,7 +6,13 @@
     <div class="container">
       <div>
         <ion-item lines="none" class="total-item">
-          <ion-label>{{model?.productsInCart}} pases en el carrito</ion-label>
+          <ion-label>
+            <span>Hay {{model?.productsInCart}} pase</span>
+            @if(model?.productsInCart>1){
+              <span>s</span>
+            }
+             <span> en el carrito</span>
+            </ion-label>
           <ion-button fill="clear" slot="end" color="dark" size="small" (click)="cartService.clearCart()">
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
