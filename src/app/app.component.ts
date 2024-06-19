@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { IonApp, IonRouterOutlet, IonMenu, IonHeader, IonToolbar, IonIcon, IonContent, IonLabel, IonItem, IonMenuToggle } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { addCircleOutline, cardOutline, cartOutline, personCircleOutline, removeCircleOutline, storefrontOutline, storefrontSharp, ticketOutline, ticketSharp, trashOutline } from 'ionicons/icons';
@@ -25,20 +25,20 @@ import { addCircleOutline, cardOutline, cartOutline, personCircleOutline, remove
     NgClass,
   ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   pages =  [
     {
       title: 'Tienda de pases',
       url: '/products',
       icon: 'storefront',
-      active: true,
+      isActive: true,
     },
     {
       title: 'Mis pases',
       url: '/mypasses',
       icon: 'ticket',
-      active: false,
+      isActive: false,
     },
   ];
 
@@ -59,10 +59,26 @@ export class AppComponent {
     });
   }
 
+  ngOnInit(){
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.updateActiveState(event.urlAfterRedirects);
+      }
+    });
+
+    this.updateActiveState(this.router.url);
+  }
+
+  updateActiveState(url: string) {
+    this.pages.forEach(page => {
+      page.isActive = page.url === url;
+    });
+  }
+
   onItemTap(page: any){
     if(!page?.active){
-      const index = this.pages.findIndex(item => item.active);//busca la página que esta activa
-      this.pages[index].active = false; //desactiva la página que esta activa
+      const index = this.pages.findIndex(item => item.isActive);//busca la página que esta activa
+      this.pages[index].isActive = false; //desactiva la página que esta activa
       page.active = true; //activa la página tocada
     }
 
