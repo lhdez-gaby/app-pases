@@ -1,4 +1,4 @@
-import { Order } from './../../models/order.model';
+import { Order } from '../../models/order.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
