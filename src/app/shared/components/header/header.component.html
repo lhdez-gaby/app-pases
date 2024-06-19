@@ -1,5 +1,8 @@
 <ion-header >
   <ion-toolbar color="secondary">
+    @if(hasMenuButton){
+      <ion-menu-button slot="start" class="menu-button"></ion-menu-button>
+    }
     @if(hasBackButton){
       <app-back-button slot="start"></app-back-button>
     }

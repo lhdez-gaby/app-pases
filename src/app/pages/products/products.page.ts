@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonThumbnail, IonContent, IonRow ,IonCol, IonImg, IonCard, IonLabel, IonText, IonList, IonItem,  IonTitle, IonToolbar,IonSearchbar } from '@ionic/angular/standalone';
+import { IonThumbnail, IonContent, IonRow ,IonCol, IonImg, IonCard, IonLabel, IonText, IonList, IonItem,  IonTitle, IonToolbar,IonSearchbar, IonMenuButton } from '@ionic/angular/standalone';
 import { ApiService } from 'src/app/services/api/api.service';
 import { Product } from 'src/app/models/product.model';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -30,6 +30,7 @@ import { Subscription, catchError, of } from 'rxjs';
     IonTitle,
     IonToolbar,
     IonSearchbar,
+    IonMenuButton,
     RouterLink,
     CommonModule, 
     FormsModule, 

@@ -11,6 +11,7 @@ export class HeaderComponent  implements OnInit {
   @Input() productsInCart!: number;
   @Input() hasBackButton?: boolean;
   @Input() hasCartButton?: boolean;
+  @Input() hasMenuButton?: boolean;
   constructor() { }
 
   ngOnInit() {}
